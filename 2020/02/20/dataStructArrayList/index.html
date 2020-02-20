@@ -5,25 +5,25 @@
   
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <link rel="dns-prefetch" href="http://yoursite.com">
+  <link rel="dns-prefetch" href="http://onebowman.github.io">
   <title>数据结构(一) 动态数组 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="线性表线性表是具有 n 个相同类型元素的有限序列常见的线性表包括：  数组 链表 队列 栈 哈希表接口设计123456789101112131415161718192021222324interface MyList&lt;E&gt;&amp;#123;&#x2F;&#x2F;元素不存在则返回的索引值int ELEMENT_NOT_FOUND_INDEX_RESULT &#x3D; -1;&#x2F;&#x2F;元素数量int size();&#x2F;&#x2F;是否为空">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据结构(一) 动态数组">
-<meta property="og:url" content="http://yoursite.com/2020/02/20/dataStruct_ArrayList/index.html">
+<meta property="og:url" content="http://onebowman.github.io/2020/02/20/dataStructArrayList/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="线性表线性表是具有 n 个相同类型元素的有限序列常见的线性表包括：  数组 链表 队列 栈 哈希表接口设计123456789101112131415161718192021222324interface MyList&lt;E&gt;&amp;#123;&#x2F;&#x2F;元素不存在则返回的索引值int ELEMENT_NOT_FOUND_INDEX_RESULT &#x3D; -1;&#x2F;&#x2F;元素数量int size();&#x2F;&#x2F;是否为空">
 <meta property="og:locale" content="cn">
-<meta property="og:image" content="http://yoursite.com/2020/02/20/dataStruct_ArrayList/images/20200220/1.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/20/dataStruct_ArrayList/images/20200220/2.png">
-<meta property="og:image" content="http://yoursite.com/2020/02/20/dataStruct_ArrayList/images/20200220/3.png">
+<meta property="og:image" content="http://onebowman.github.io/2020/02/20/dataStructArrayList/2.png">
+<meta property="og:image" content="http://onebowman.github.io/2020/02/20/dataStructArrayList/1.png">
+<meta property="og:image" content="http://onebowman.github.io/2020/02/20/dataStructArrayList/3.png">
 <meta property="article:published_time" content="2020-02-20T09:10:14.000Z">
-<meta property="article:modified_time" content="2020-02-20T09:36:08.742Z">
+<meta property="article:modified_time" content="2020-02-20T11:42:49.086Z">
 <meta property="article:author" content="一桶天下">
 <meta property="article:tag" content="Java,数据结构">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2020/02/20/dataStruct_ArrayList/images/20200220/1.png">
+<meta name="twitter:image" content="http://onebowman.github.io/2020/02/20/dataStructArrayList/2.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -143,7 +143,7 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-dataStruct_ArrayList" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-dataStructArrayList" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -155,7 +155,7 @@
   
 
         
-        <a href="/2020/02/20/dataStruct_ArrayList/" class="archive-article-date">
+        <a href="/2020/02/20/dataStructArrayList/" class="archive-article-date">
   	<time datetime="2020-02-20T09:10:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-02-20</time>
 </a>
         
@@ -189,23 +189,14 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">rangeCheckForAdd</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span> (index &lt; <span class="number">0</span> || index &gt; size) &#123;</span><br><span class="line">           <span class="keyword">throw</span> <span class="keyword">new</span> IndexOutOfBoundsException(<span class="string">"size "</span> + <span class="keyword">this</span>.size + <span class="string">", want "</span> + index);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
 <p>索引值有效,则需要判断容量是否足够</p>
 <ul>
-<li>如果容量不够,则需要扩容处理,新建一个容量更大的数组,并把原来的数组拷贝过去<br><img src="images/20200220/1.png" alt="数组添加操作"><br>将其封装成一个方法 此处会直接将原有容量扩大1.5倍<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> oldCapacity = <span class="keyword">this</span>.elements.length;</span><br><span class="line">       <span class="keyword">if</span> (oldCapacity &lt; capacity) &#123;</span><br><span class="line">           <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">           E[] newElements = (E[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">               <span class="comment">/*</span></span><br><span class="line"><span class="comment">       使用copyarray方法能够提高性能,下面的for循环操作等同于</span></span><br><span class="line"><span class="comment">      System.arraycopy(elements, 0, newElements, 0, size);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">               newElements[i] = elements[i];</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">this</span>.elements = newElements;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
-<li>如果容量足够,则需要将要添加位置之后的所有元素后移一位 然后将元素添加进去,并使size+1<br><img src="images/20200220/2.png" alt="数组扩容操作示意图"></li>
+<li>如果容量不够,则需要扩容处理,新建一个容量更大的数组,并把原来的数组拷贝过去<br><img src="/2020/02/20/dataStructArrayList/2.png" alt="数组扩容操作示意图"><br>将其封装成一个方法 此处会直接将原有容量扩大1.5倍<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> oldCapacity = <span class="keyword">this</span>.elements.length;</span><br><span class="line">       <span class="keyword">if</span> (oldCapacity &lt; capacity) &#123;</span><br><span class="line">           <span class="keyword">int</span> newCapacity = oldCapacity + (oldCapacity &gt;&gt; <span class="number">1</span>);</span><br><span class="line">           E[] newElements = (E[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">               <span class="comment">/*</span></span><br><span class="line"><span class="comment">       使用copyarray方法能够提高性能,下面的for循环操作等同于</span></span><br><span class="line"><span class="comment">      System.arraycopy(elements, 0, newElements, 0, size);</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;size;i++)&#123;</span><br><span class="line">               newElements[i] = elements[i];</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">this</span>.elements = newElements;</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure></li>
+<li>如果容量足够,则需要将要添加位置之后的所有元素后移一位 然后将元素添加进去,并使size+1<br><img src="/2020/02/20/dataStructArrayList/1.png" alt="数组添加操作"><br>代码如下<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E e)</span></span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line">    ensureCapacity(size + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        使用copyarray方法能够提高性能,下面的for循环操作等同于</span></span><br><span class="line"><span class="comment">        System.arraycopy(this.elements, index, this.elements, index + 1, this.size - index);</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = size; i &gt; index; i--)</span><br><span class="line">        elements[i] = elements[i - <span class="number">1</span>];</span><br><span class="line">    elements[index] = e;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h5></li>
 </ul>
-<p>代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E e)</span></span>&#123;</span><br><span class="line">    rangeCheckForAdd(index);</span><br><span class="line">    ensureCapacity(size + <span class="number">1</span>);</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">        使用copyarray方法能够提高性能,下面的for循环操作等同于</span></span><br><span class="line"><span class="comment">        System.arraycopy(this.elements, index, this.elements, index + 1, this.size - index);</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = size; i &gt; index; i--)</span><br><span class="line">        elements[i] = elements[i - <span class="number">1</span>];</span><br><span class="line">    elements[index] = e;</span><br><span class="line">    size++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id="remove方法"><a href="#remove方法" class="headerlink" title="remove方法"></a>remove方法</h5><ol>
-<li><p>首先校验索引有效</p>
-</li>
-<li><p>整体移动索引值之后的所有元素覆盖前一位<br><img src="images/20200220/3.png" alt="数组删除元素示意图"></p>
-</li>
-<li><p>将最后一位置为null,size-1</p>
-</li>
-<li><p>此步可选 如果当前使用的容量较小 则新建一个数组,避免空间浪费</p>
+<p>1.首先校验索引有效<br>2.整体移动索引值之后的所有元素覆盖前一位<br>  <img src="/2020/02/20/dataStructArrayList/3.png" alt="数组删除元素示意图"></p>
+<p>3.将最后一位置为null,size-1<br>4.此步可选 如果当前使用的容量较小 则新建一个数组,避免空间浪费</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">     rangeCheck(index);</span><br><span class="line">        E e = <span class="keyword">this</span>.elements[index];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=index+<span class="number">1</span>;i&lt;size;i++)&#123;</span><br><span class="line">            elements[i-<span class="number">1</span>] = elements[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">this</span>.elements[<span class="keyword">this</span>.size - <span class="number">1</span>] = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">this</span>.size--;</span><br><span class="line">        <span class="keyword">this</span>.trim();</span><br><span class="line">        <span class="keyword">return</span> e;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//如果当前使用的容量小于等于总容量的一半 且大于默认容量 则进行缩容操作</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">trim</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> capacity = <span class="keyword">this</span>.elements.length;</span><br><span class="line">        <span class="keyword">int</span> newCapacity = capacity &gt;&gt; <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.size &gt;= newCapacity || capacity &lt;= DEFAULT_INIT_CAPACITY) &#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        E[] newElements = (E[]) <span class="keyword">new</span> Object[newCapacity];</span><br><span class="line">        System.arraycopy(<span class="keyword">this</span>.elements, <span class="number">0</span>, newElements, <span class="number">0</span>, <span class="keyword">this</span>.size);</span><br><span class="line">        elements = newElements;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>详细代码与测试代码见 <a href="https://github.com/onebowman/BlogCode.git" target="_blank" rel="noopener">github</a></p>
-</li>
-</ol>
 
       
 
@@ -272,7 +263,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2020/02/20/dataStruct_ArrayList/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://onebowman.github.io/2020/02/20/dataStructArrayList/" alt="微信分享二维码">
     </div>
 </div>
 
